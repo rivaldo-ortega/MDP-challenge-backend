@@ -1,9 +1,9 @@
-const { Pool } = require('pg');
-const connectionString = process.env.DATABASE_URL;
+const { Client } = require('pg');
+/* const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({
   connectionString,
   ssl: true,
-});
+}); */
 /* const Pool = require('pg').Pool;
 const pool = new Pool({
   user: process.env.USER,
@@ -13,4 +13,12 @@ const pool = new Pool({
   port: process.env.PORT,
 }); */
 
-module.exports = pool;
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
+client.connect();
+module.exports = client;
