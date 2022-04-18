@@ -11,20 +11,24 @@ const getUsers = (request, response) => {
 };
 
 const createUser = (request, response) => {
-  const { nombre, apellido, fecha_nacimiento } = request.body;
-  if (!nombre || !apellido || !fecha_nacimiento) {
-    throw new BadRequestError('Please provide all values');
-  }
-  pool.query(
-    'INSERT INTO users (nombre, apellido,fecha_nacimiento) VALUES ($1, $2, $3)',
-    [nombre, apellido, fecha_nacimiento],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(201).send(`User added with ID`);
+  try {
+    const { nombre, apellido, fecha_nacimiento } = request.body;
+    if (!nombre || !apellido || !fecha_nacimiento) {
+      throw new BadRequestError('Please provide all values');
     }
-  );
+    pool.query(
+      'INSERT INTO users (nombre, apellido,fecha_nacimiento) VALUES ($1, $2, $3)',
+      [nombre, apellido, fecha_nacimiento],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(201).send(`User added with ID`);
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const getAVG = (request, response) => {
