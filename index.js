@@ -13,7 +13,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('React&Node Challenge ');
 });
-app.use('/api/users', usersRouter);
+app.use('api/users', usersRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
