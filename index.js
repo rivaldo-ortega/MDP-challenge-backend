@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('React&Node Challenge');
+  res.send('React&Node Challenge ');
 });
 app.use('/api/users', usersRouter);
 
