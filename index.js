@@ -18,7 +18,7 @@ app.use('/api/users', usersRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT_SERVE || 5000;
+const port = process.env.PORT || 5000;
 const start = async () => {
   try {
     app.listen(port, () => {
