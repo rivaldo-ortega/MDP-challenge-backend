@@ -4,6 +4,8 @@ const usersRouter = require('./routes/users.routes.js');
 const notFoundMiddleware = require('./middleware/not-found.js');
 const errorHandlerMiddleware = require('./middleware/error-handler.js');
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.use(cors());
 app.use(express.json());
